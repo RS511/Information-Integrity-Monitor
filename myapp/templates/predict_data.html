@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<section class="section-services section-t8">
+    <div class="container">
+    <h3>Fake News Prediction Form</h3><hr>
+    <div class="form">
+      <form class="form-a" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-12 mb-2">
+            <div class="form-group">
+              <label class="pb-2" for="Type">Write Your News Content</label>
+              <textarea class="form-control form-control-a" placeholder="Write Your News Content" name="content" required>{{request.POST.content}}</textarea>
+            </div>
+          </div>
+          
+          
+          
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-b">Predict</button>
+          </div>
+        </div>
+      </form>
+      <div class="container">
+          {% if output == "Fake" %}
+            <h4 align="center" style="color:red">Oops! Given news is fake.</h4><hr>
+          {% elif output == "Real" %}
+            <h4 align="center" style="color:green">Great! Given news is real.</h4><hr>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+{% include 'footer.html' %}
+{% endblock  %} 
